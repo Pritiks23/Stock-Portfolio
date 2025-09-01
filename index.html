@@ -10,14 +10,15 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #000; /* solid black background */
+  background: url('https://www.shutterstock.com/image-illustration/closeup-golden-bitcoin-btc-cryptocurrency-600nw-1965261655.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: #fff; /* all text white */
 }
 header {
   text-align: center;
   padding: 2rem 1rem;
-  background-color: rgba(0,0,0,0.8);
-  box-shadow: 0 2px 5px rgba(255,255,255,0.1);
+  background-color: rgba(0,0,0,0.5);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 header h1 { 
   margin: 0; 
@@ -28,10 +29,10 @@ header h1 {
 main {
   max-width: 1200px;
   margin: 2rem auto;
-  background-color: rgba(255,255,255,0.05);
+  background-color: rgba(0,0,0,0.6); /* dark overlay so text is readable */
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
   overflow-x: auto;
 }
 table { 
@@ -42,14 +43,14 @@ table {
 th, td { 
   padding: 0.75rem; 
   text-align: center; 
-  border-bottom: 1px solid rgba(255,255,255,0.2); 
+  border-bottom: 1px solid rgba(255,255,255,0.3); 
   color: #fff;
 }
 th { 
-  background-color: rgba(255,255,255,0.1); 
+  background-color: rgba(0,0,0,0.4); 
 }
 td { 
-  background-color: rgba(255,255,255,0.05); 
+  background-color: rgba(0,0,0,0.2); 
   border-radius: 6px; 
   margin: 2px; 
 }
@@ -78,7 +79,7 @@ footer {
   text-align:center; 
   margin:2rem 0; 
   font-size:0.85rem; 
-  opacity:0.7;
+  opacity:0.8;
 }
 footer a { color:#ff9800; text-decoration:none; }
 </style>
@@ -177,3 +178,4 @@ fetchTopCoins();
 </script>
 </body>
 </html>
+
