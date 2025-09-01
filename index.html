@@ -1,198 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Portfolio Tracker</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background-color: rgba(0,0,0,0.3);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-      letter-spacing: 1px;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      background-color: rgba(255,255,255,0.05);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-
-    form {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    form input {
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: none;
-      flex: 1 1 150px;
-    }
-
-    form button {
-      padding: 0.5rem 1rem;
-      background-color: #ff9800;
-      color: #000;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    form button:hover {
-      background-color: #e68900;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    th, td {
-      padding: 0.75rem;
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-
-    th {
-      background-color: rgba(0,0,0,0.3);
-    }
-
-    td {
-      background-color: rgba(0,0,0,0.1);
-      border-radius: 6px;
-      margin: 2px;
-    }
-
-    .profit {
-      color: #00ff99;
-      font-weight: bold;
-    }
-
-    .loss {
-      color: #ff4d4d;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      margin: 2rem 0;
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 12 Crypto Portfolio Tracker</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+}
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+header h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: rgba(255,255,255,0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { padding: 0.75rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.2); }
+th { background-color: rgba(0,0,0,0.3); }
+td { background-color: rgba(0,0,0,0.1); border-radius: 6px; margin: 2px; }
+input { width: 60px; padding: 0.3rem; border-radius: 5px; border: none; }
+button { padding: 0.5rem 1rem; margin-top: 1rem; background:#ff9800; border:none; border-radius:5px; cursor:pointer; font-weight:bold;}
+button:hover { background:#e68900; }
+footer { text-align:center; margin:2rem 0; font-size:0.85rem; opacity:0.7;}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Crypto Portfolio Tracker</h1>
-  </header>
-  <main>
-    <form id="portfolioForm">
-      <input type="number" id="btcAmount" placeholder="BTC Amount" step="any" required>
-      <input type="number" id="ethAmount" placeholder="ETH Amount" step="any" required>
-      <button type="submit">Calculate</button>
-    </form>
+<header>
+  <h1>Top 12 Crypto Portfolio Tracker</h1>
+</header>
+<main>
+  <button id="refresh">Refresh Prices</button>
+  <table id="portfolioTable">
+    <thead>
+      <tr>
+        <th>Coin</th>
+        <th>Price (USD)</th>
+        <th>Your Amount</th>
+        <th>Value (USD)</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Top 12 coins will be inserted here -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Total Portfolio Value</strong></td>
+        <td id="totalValue">$0</td>
+      </tr>
+    </tfoot>
+  </table>
+</main>
+<footer>
+  Powered by <a href="https://www.coingecko.com/" target="_blank" style="color:#ff9800;">CoinGecko API</a>
+</footer>
 
-    <table id="portfolioTable">
-      <thead>
-        <tr>
-          <th>Crypto</th>
-          <th>Amount</th>
-          <th>Price (USD)</th>
-          <th>Value (USD)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Bitcoin (BTC)</td>
-          <td id="btcAmountCell">-</td>
-          <td id="btcPrice">$0</td>
-          <td id="btcValue">$0</td>
-        </tr>
-        <tr>
-          <td>Ethereum (ETH)</td>
-          <td id="ethAmountCell">-</td>
-          <td id="ethPrice">$0</td>
-          <td id="ethValue">$0</td>
-        </tr>
-        <tr>
-          <td colspan="3"><strong>Total Portfolio Value</strong></td>
-          <td id="totalValue">$0</td>
-        </tr>
-      </tbody>
-    </table>
-  </main>
+<script>
+const tableBody = document.getElementById('tableBody');
+const totalValueEl = document.getElementById('totalValue');
 
-  <footer>
-    Powered by <a href="https://www.coingecko.com/" target="_blank" style="color:#ff9800;">CoinGecko API</a>
-  </footer>
+let topCoins = [];
 
-  <script>
-    const API_URL = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&precision=full';
+async function fetchTopCoins() {
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=12&page=1&sparkline=false';
+  const res = await fetch(url);
+  const data = await res.json();
+  topCoins = data.map(c => ({
+    id: c.id,
+    name: c.name,
+    symbol: c.symbol.toUpperCase(),
+    price: c.current_price
+  }));
+  renderTable();
+}
 
-    async function fetchPrices() {
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        return {
-          btc: data.bitcoin.usd,
-          eth: data.ethereum.usd
-        };
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        return { btc: 0, eth: 0 };
-      }
-    }
+function renderTable() {
+  tableBody.innerHTML = '';
+  topCoins.forEach((coin, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${coin.name} (${coin.symbol})</td>
+      <td id="price-${index}">$${coin.price.toLocaleString()}</td>
+      <td><input type="number" id="amount-${index}" min="0" step="any" value="0"></td>
+      <td id="value-${index}">$0</td>
+    `;
+    tableBody.appendChild(row);
 
-    async function updatePortfolio(event) {
-      event.preventDefault();
+    document.getElementById(`amount-${index}`).addEventListener('input', updateValues);
+  });
+}
 
-      const btcAmount = parseFloat(document.getElementById('btcAmount').value) || 0;
-      const ethAmount = parseFloat(document.getElementById('ethAmount').value) || 0;
+function updateValues() {
+  let total = 0;
+  topCoins.forEach((coin, index) => {
+    const amount = parseFloat(document.getElementById(`amount-${index}`).value) || 0;
+    const value = amount * coin.price;
+    document.getElementById(`value-${index}`).textContent = `$${value.toLocaleString(undefined, {maximumFractionDigits:2})}`;
+    total += value;
+  });
+  totalValueEl.textContent = `$${total.toLocaleString(undefined, {maximumFractionDigits:2})}`;
+}
 
-      const prices = await fetchPrices();
+async function refreshPrices() {
+  const ids = topCoins.map(c => c.id).join(',');
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&precision=full`;
+  const res = await fetch(url);
+  const data = await res.json();
+  topCoins.forEach((coin, index) => {
+    coin.price = data[coin.id].usd;
+    document.getElementById(`price-${index}`).textContent = `$${coin.price.toLocaleString()}`;
+  });
+  updateValues();
+}
 
-      document.getElementById('btcAmountCell').textContent = btcAmount;
-      document.getElementById('ethAmountCell').textContent = ethAmount;
+document.getElementById('refresh').addEventListener('click', refreshPrices);
 
-      document.getElementById('btcPrice').textContent = `$${prices.btc.toLocaleString()}`;
-      document.getElementById('ethPrice').textContent = `$${prices.eth.toLocaleString()}`;
-
-      const btcValue = btcAmount * prices.btc;
-      const ethValue = ethAmount * prices.eth;
-      const total = btcValue + ethValue;
-
-      document.getElementById('btcValue').textContent = `$${btcValue.toLocaleString(undefined, {maximumFractionDigits:2})}`;
-      document.getElementById('ethValue').textContent = `$${ethValue.toLocaleString(undefined, {maximumFractionDigits:2})}`;
-      document.getElementById('totalValue').textContent = `$${total.toLocaleString(undefined, {maximumFractionDigits:2})}`;
-    }
-
-    document.getElementById('portfolioForm').addEventListener('submit', updatePortfolio);
-  </script>
+fetchTopCoins();
+</script>
 </body>
 </html>
+
