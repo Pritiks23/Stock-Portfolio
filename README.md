@@ -5,12 +5,22 @@ The **Top 12 Crypto Portfolio Tracker** is a web application that allows users t
 
 
 Try me here: https://pritiks23.github.io/Stock-Portfolio/
+
 ## Features
-- Displays the top 12 cryptocurrencies by market cap.
-- Real-time price updates using the CoinGecko API.
-- Allows users to input their holdings for each coin.
-- Automatically calculates and updates the total portfolio value.
-- Simple and clean user interface with a dark-themed background.
+- Dynamic retrieval of top 12 cryptocurrencies sorted by market cap.
+- Real-time USD price updates via CoinGecko API endpoints.
+- User input for holdings with automatic calculation of portfolio value.
+- Responsive design with a semi-transparent overlay for optimal readability on background imagery.
+- Minimal dependencies for ease of deployment.
+
+## Architecture & Implementation
+- **Frontend:** Built entirely with vanilla HTML, CSS, and JavaScript.
+- **Data Fetching:** Utilizes `fetch()` API to interact with CoinGecko endpoints:
+  - `GET /coins/markets` for retrieving market data (name, symbol, price, market cap)
+  - `GET /simple/price` for updating individual coin prices
+- **Data Binding:** DOM manipulation with `document.createElement()` and `innerHTML` for dynamic table generation.
+- **Event Handling:** Real-time updates via `input` events on amount fields, recalculating portfolio value without page reload.
+- **Styling:** CSS overlays (`rgba`) ensure visibility of text over background images while maintaining modern UI aesthetics.
 
 ## Technologies Used
 - HTML, CSS, and JavaScript
