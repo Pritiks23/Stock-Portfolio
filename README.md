@@ -17,9 +17,3 @@ Try me here: https://pritiks23.github.io/Stock-Portfolio/
 - CoinGecko API for cryptocurrency prices
 - Google Fonts (Roboto) for typography
 
-## Usage
-1. Open the `index.html` file in a web browser.
-2. The table will automatically populate with the top 12 cryptocurrencies.
-3. Enter your holdings in the "Your Amount" column.
-4. Click the "Refresh Prices" button to update coin prices and recalculate portfolio values.
-
