@@ -3,110 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Dashboard</title>
+<title>Top 12 Crypto Portfolio Tracker</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 body {
-  margin:0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #fff;
-  background: url('https://media.shutterstock.com/image-illustration/closeup-golden-bitcoin-btc-cryptocurrency-600nw-1965261655.jpg') no-repeat center center fixed;
-  background-size: cover;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000; /* solid black background */
+  color: #fff; /* all text white */
 }
 header {
-  text-align:center;
-  padding:3rem 1rem;
-  background-color: rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0 2px 5px rgba(255,255,255,0.1);
 }
-header h1 { font-size:2.5rem; margin:0; }
+header h1 { 
+  margin: 0; 
+  font-size: 2rem; 
+  letter-spacing: 1px; 
+  color: #fff;
+}
 main {
-  max-width:1200px;
-  margin:2rem auto;
-  background-color: rgba(0,0,0,0.5);
-  padding:2rem;
-  border-radius:12px;
-  overflow-x:auto;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: rgba(255,255,255,0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+  overflow-x: auto;
 }
-section { display:none; }
-section.active { display:block; }
-a.button {
-  display:inline-block;
-  padding:1rem 2rem;
-  margin:1rem 0;
-  text-decoration:none;
-  color:#fff;
-  background-color: rgba(0,0,0,0.6);
-  border-radius:8px;
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 1rem; 
+}
+th, td { 
+  padding: 0.75rem; 
+  text-align: center; 
+  border-bottom: 1px solid rgba(255,255,255,0.2); 
+  color: #fff;
+}
+th { 
+  background-color: rgba(255,255,255,0.1); 
+}
+td { 
+  background-color: rgba(255,255,255,0.05); 
+  border-radius: 6px; 
+  margin: 2px; 
+}
+input { 
+  width: 60px; 
+  padding: 0.3rem; 
+  border-radius: 5px; 
+  border: none; 
+  background-color: #222; 
+  color: #fff; 
+}
+button { 
+  padding: 0.5rem 1rem; 
+  margin-top: 1rem; 
+  background:#ff9800; 
+  border:none; 
+  border-radius:5px; 
+  cursor:pointer; 
   font-weight:bold;
-  transition:0.3s;
+  color: #000;
 }
-a.button:hover { background-color: rgba(0,0,0,0.8);}
-table { width:100%; border-collapse:collapse; margin-top:1rem;}
-th, td { padding:0.75rem; text-align:center; border-bottom:1px solid rgba(255,255,255,0.2);}
-th { background-color: rgba(0,0,0,0.6);}
-td { background-color: rgba(0,0,0,0.3); border-radius:6px; margin:2px;}
-input { width:60px; padding:0.3rem; border-radius:5px; border:none; }
-button { padding:0.5rem 1rem; margin-top:1rem; background:#ff9800; border:none; border-radius:5px; cursor:pointer; font-weight:bold;}
-button:hover { background:#e68900;}
-footer { text-align:center; margin:2rem 0; opacity:0.7;}
-a { color:#ff9800; text-decoration:none;}
-a:hover { text-decoration:underline;}
+button:hover { 
+  background:#e68900; 
+}
+footer { 
+  text-align:center; 
+  margin:2rem 0; 
+  font-size:0.85rem; 
+  opacity:0.7;
+}
+footer a { color:#ff9800; text-decoration:none; }
 </style>
 </head>
 <body>
 <header>
-  <h1>Crypto Dashboard</h1>
+  <h1>Top 12 Crypto Portfolio Tracker</h1>
 </header>
 <main>
-  <!-- Navigation Section -->
-  <section id="nav" class="active">
-    <a href="#" class="button" id="goTracker">Portfolio Tracker (Top 12 Coins)</a>
-    <a href="https://www.investopedia.com/terms/c/cryptocurrency.asp" target="_blank" class="button">Crypto Investing Guide</a>
-    <a href="https://www.coingecko.com/en" target="_blank" class="button">CoinGecko Market Data</a>
-    <a href="https://www.binance.com/en" target="_blank" class="button">Binance Exchange</a>
-  </section>
-
-  <!-- Tracker Section -->
-  <section id="tracker">
-    <button id="backNav">← Back to Navigation</button>
-    <button id="refresh">Refresh Prices</button>
-    <table id="portfolioTable">
-      <thead>
-        <tr>
-          <th>Coin</th>
-          <th>Price (USD)</th>
-          <th>Your Amount</th>
-          <th>Value (USD)</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3"><strong>Total Portfolio Value</strong></td>
-          <td id="totalValue">$0</td>
-        </tr>
-      </tfoot>
-    </table>
-  </section>
+  <button id="refresh">Refresh Prices</button>
+  <table id="portfolioTable">
+    <thead>
+      <tr>
+        <th>Coin</th>
+        <th>Price (USD)</th>
+        <th>Your Amount</th>
+        <th>Value (USD)</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Top 12 coins will be inserted here -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Total Portfolio Value</strong></td>
+        <td id="totalValue">$0</td>
+      </tr>
+    </tfoot>
+  </table>
 </main>
 <footer>
   Powered by <a href="https://www.coingecko.com/" target="_blank">CoinGecko API</a>
 </footer>
 
 <script>
-const navSection = document.getElementById('nav');
-const trackerSection = document.getElementById('tracker');
-document.getElementById('goTracker').addEventListener('click', () => {
-  navSection.classList.remove('active');
-  trackerSection.classList.add('active');
-});
-document.getElementById('backNav').addEventListener('click', () => {
-  trackerSection.classList.remove('active');
-  navSection.classList.add('active');
-});
-
-// Tracker functionality
 const tableBody = document.getElementById('tableBody');
 const totalValueEl = document.getElementById('totalValue');
+
 let topCoins = [];
 
 async function fetchTopCoins() {
@@ -133,36 +143,37 @@ function renderTable() {
       <td id="value-${index}">$0</td>
     `;
     tableBody.appendChild(row);
+
     document.getElementById(`amount-${index}`).addEventListener('input', updateValues);
   });
 }
 
 function updateValues() {
   let total = 0;
-  topCoins.forEach((coin,index)=>{
-    const amount=parseFloat(document.getElementById(`amount-${index}`).value)||0;
-    const value=amount*coin.price;
-    document.getElementById(`value-${index}`).textContent=`$${value.toLocaleString(undefined,{maximumFractionDigits:2})}`;
-    total+=value;
+  topCoins.forEach((coin, index) => {
+    const amount = parseFloat(document.getElementById(`amount-${index}`).value) || 0;
+    const value = amount * coin.price;
+    document.getElementById(`value-${index}`).textContent = `$${value.toLocaleString(undefined, {maximumFractionDigits:2})}`;
+    total += value;
   });
-  totalValueEl.textContent=`$${total.toLocaleString(undefined,{maximumFractionDigits:2})}`;
+  totalValueEl.textContent = `$${total.toLocaleString(undefined, {maximumFractionDigits:2})}`;
 }
 
-async function refreshPrices(){
-  const ids=topCoins.map(c=>c.id).join(',');
-  const url=`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&precision=full`;
-  const res=await fetch(url);
-  const data=await res.json();
-  topCoins.forEach((coin,index)=>{
-    coin.price=data[coin.id].usd;
-    document.getElementById(`price-${index}`).textContent=`$${coin.price.toLocaleString()}`;
+async function refreshPrices() {
+  const ids = topCoins.map(c => c.id).join(',');
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&precision=full`;
+  const res = await fetch(url);
+  const data = await res.json();
+  topCoins.forEach((coin, index) => {
+    coin.price = data[coin.id].usd;
+    document.getElementById(`price-${index}`).textContent = `$${coin.price.toLocaleString()}`;
   });
   updateValues();
 }
 
 document.getElementById('refresh').addEventListener('click', refreshPrices);
+
 fetchTopCoins();
 </script>
 </body>
 </html>
-
